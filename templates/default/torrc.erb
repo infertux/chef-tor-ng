@@ -15,7 +15,7 @@
 ## Tor opens a SOCKS proxy on port 9050 by default -- even if you don't
 ## configure one below. Set "SOCKSPort 0" if you plan to run Tor only
 ## as a relay, and not make any local application connections yourself.
-SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
+SOCKSPort localhost:9050 # Default: Bind to localhost:9050 for local connections.
 #SOCKSPort 192.168.0.1:9100 # Bind to this address:port too.
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
@@ -81,8 +81,13 @@ CookieAuthentication 1
 ## See https://www.torproject.org/docs/tor-doc-relay for details.
 
 ## Required: what port to advertise for incoming Tor connections.
-<% if @torrc['or_port'] %>
-ORPort <%= @torrc['or_port'] %>
+<% if @torrc['or_port'].respond_to?(:each) %>
+<% @torrc['or_port'].each do |or_port| %>
+ORPort <%= or_port %>
+<% end %>
+<% elsif @torrc['or_port'] %>
+<%= "ORPort #{node['ipaddress']}:9001" if node['ipaddress'] %>
+<%= "ORPort [#{node['ip6address']}]:9001" if node['ip6address'] %>
 <% end %>
 ## If you want to listen on a port other than the one advertised in
 ## ORPort (e.g. to advertise 443 but bind to 9090), you can do it as
@@ -141,7 +146,7 @@ Nickname <%= @torrc['nickname'] %>
 ## Uncomment this to mirror directory information for others. Please do
 ## if you have enough bandwidth.
 <% if @torrc['dir_port'] %>
-DirPort <%= @torrc['dir_port'] %> # what port to advertise for directory connections
+DirPort <%= @torrc['dir_port'] == true ? '9030' : @torrc['dir_port'] %> # what port to advertise for directory connections
 <% end %>
 ## If you want to listen on a port other than the one advertised in
 ## DirPort (e.g. to advertise 80 but bind to 9091), you can do it as

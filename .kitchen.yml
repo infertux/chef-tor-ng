@@ -1,0 +1,21 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: chef_zero
+  product_name: chef
+  deprecations_as_errors: true
+  multiple_converge: 2
+  enforce_idempotency: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: debian
+
+suites:
+  - name: default
+    run_list:
+      - recipe[tor-ng::default]
