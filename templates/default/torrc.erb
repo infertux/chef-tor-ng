@@ -119,6 +119,12 @@ Nickname <%= @torrc['nickname'] %>
 ## 2^20, etc.
 #RelayBandwidthRate 100 KBytes  # Throttle traffic to 100KB/s (800Kbps)
 #RelayBandwidthBurst 200 KBytes # But allow bursts up to 200KB (1600Kb)
+<% if @torrc['relay_bandwidth_rate'] %>
+RelayBandwidthRate <%= @torrc['relay_bandwidth_rate'] %> KBytes
+<% end %>
+<% if @torrc['relay_bandwidth_burst'] %>
+RelayBandwidthBurst <%= @torrc['relay_bandwidth_burst'] %> KBytes
+<% end %>
 
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies separately to sent and received bytes,
