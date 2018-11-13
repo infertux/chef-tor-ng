@@ -148,6 +148,9 @@ RelayBandwidthBurst <%= @torrc['relay_bandwidth_burst'] %> KBytes
 #ContactInfo Random Person <nobody AT example dot com>
 ## You might also include your PGP or GPG fingerprint if you have one:
 #ContactInfo 0xFFFFFFFF Random Person <nobody AT example dot com>
+<% if @torrc['contact_info'] %>
+ContactInfo <%= @torrc['contact_info'] %>
+<% end %>
 
 ## Uncomment this to mirror directory information for others. Please do
 ## if you have enough bandwidth.
