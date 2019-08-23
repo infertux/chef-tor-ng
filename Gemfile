@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem 'berkshelf'
+  gem 'chef', '~> 14'
   gem 'rake'
 end
 

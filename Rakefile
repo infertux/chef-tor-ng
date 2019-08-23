@@ -3,6 +3,7 @@ namespace :style do
   require 'cookstyle'
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new(:ruby) do |task|
+    task.options << "--config=#{__dir__}/.rubocop.yml"
     task.options << '--display-cop-names'
     task.options << '--extra-details'
     task.options << '--display-style-guide'
@@ -21,4 +22,4 @@ task 'style:all' => ['style:ruby', 'style:chef']
 require 'kitchen/rake_tasks'
 Kitchen::RakeTasks.new
 
-task default: ['style:all', 'kitchen:all']
+task default: %w(style:all kitchen:all)
