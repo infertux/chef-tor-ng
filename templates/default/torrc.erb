@@ -99,10 +99,16 @@ ORPort <%= or_port %>
 ## The IP address or full DNS name for incoming connections to your
 ## relay. Leave commented out and Tor will guess.
 #Address noname.example.com
+<% if @torrc['address'] %>
+Address <%= @torrc['address'] %>
+<% end %>
 
 ## If you have multiple network interfaces, you can specify one for
 ## outgoing traffic to use.
 # OutboundBindAddress 10.0.0.5
+<% if @torrc['outbound_bind_address'] %>
+OutboundBindAddress <%= @torrc['outbound_bind_address'] %>
+<% end %>
 
 ## A handle for your relay, so people don't have to refer to it by key.
 ## Nicknames must be between 1 and 19 characters inclusive, and must
