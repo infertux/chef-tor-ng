@@ -7,13 +7,13 @@ template '/etc/tor/torrc' do
   group 'root'
   mode '0644'
   variables(torrc: node['tor-ng']['torrc'])
-  notifies :restart, 'service[tor]'
+  notifies :reload, 'service[tor]'
 end
 
 node['tor-ng']['torrc']['onion_services'].each do |id, service|
   directory "/var/lib/tor/#{id}" do
     not_if { service['hostname'].nil? }
-    notifies :restart, 'service[tor]'
+    notifies :reload, 'service[tor]'
     owner node['tor-ng']['user']
     group node['tor-ng']['group']
     mode '02700'
@@ -30,7 +30,7 @@ node['tor-ng']['torrc']['onion_services'].each do |id, service|
 
     file "/var/lib/tor/#{id}/#{filename}" do
       not_if { body.nil? }
-      notifies :restart, 'service[tor]'
+      notifies :reload, 'service[tor]'
       owner node['tor-ng']['user']
       group node['tor-ng']['group']
       mode '0600'
