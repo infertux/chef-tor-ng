@@ -21,7 +21,12 @@ node['tor-ng']['torrc']['onion_services'].each do |id, service|
 
   %w(hostname hs_ed25519_public_key hs_ed25519_secret_key).each do |filename|
     body = service[filename]
-    body = Base64.strict_decode64(body) if body && filename != 'hostname'
+    if body
+      case filename
+      when 'hostname' then body += "\n" # file should end with a new line
+      else body = Base64.strict_decode64(body) # decode base64-encoded attributes
+      end
+    end
 
     file "/var/lib/tor/#{id}/#{filename}" do
       not_if { body.nil? }

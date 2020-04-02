@@ -78,7 +78,9 @@ CookieAuthentication 1
 
 <% @torrc['onion_services'].each do |id, service| %>
 HiddenServiceDir /var/lib/tor/<%= id %>
-HiddenServicePort <%= service.fetch(:port) %>
+<% Array(service.fetch(:port)).each do |port| %>
+HiddenServicePort <%= port %>
+<% end %>
 <% end %>
 
 ################ This section is just for relays #####################

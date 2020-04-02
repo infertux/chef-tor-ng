@@ -14,11 +14,11 @@ default['tor-ng']['torrc'] = {
     # Example Onion Service definitions are provided below:
     #
     # 'id' => {
-    #   port: '80 127.0.0.1:80', # String, required
+    #   port: '80 127.0.0.1:80', # String|Array, required
     #   # auto generate hostname and keys
     # },
     # 'foobar' => {
-    #   port: '22 127.0.0.1:22', # String, required
+    #   port: ['22 127.0.0.1:22', '6667 10.0.0.1:6667'], # String|Array, required
     #   hostname: 'blah1234.onion',
     #   hs_ed25519_public_key: 'base64-encoded key',
     #   hs_ed25519_secret_key: 'base64-encoded key',
