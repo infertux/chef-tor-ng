@@ -76,6 +76,11 @@ CookieAuthentication 1
 #HiddenServicePort 80 127.0.0.1:80
 #HiddenServicePort 22 127.0.0.1:22
 
+<% @torrc['onion_services'].each do |id, service| %>
+HiddenServiceDir /var/lib/tor/<%= id %>
+HiddenServicePort <%= service.fetch(:port) %>
+<% end %>
+
 ################ This section is just for relays #####################
 #
 ## See https://www.torproject.org/docs/tor-doc-relay for details.
