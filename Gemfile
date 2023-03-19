@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem 'chef', '~> 14'
+  gem 'chef', '~> 16'
   gem 'rake'
 end
 
@@ -10,6 +10,7 @@ group :style do
 end
 
 group :test do
-  gem 'kitchen-docker'
+  gem 'kitchen-dokken'
   gem 'kitchen-inspec'
+  gem 'test-kitchen'
 end

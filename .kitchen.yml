@@ -1,20 +1,37 @@
 ---
 driver:
-  name: docker
+  name: dokken
+  privileged: true # allows systemd services to start
 
 provisioner:
-  name: chef_zero
-  product_name: chef
-  product_version: 14
+  name: dokken
   deprecations_as_errors: true
   multiple_converge: 2
   enforce_idempotency: true
+
+transport:
+  name: dokken
 
 verifier:
   name: inspec
 
 platforms:
-  - name: debian
+  # @see https://github.com/chef-cookbooks/testing_examples/blob/main/kitchen.dokken.yml
+  # @see https://hub.docker.com/u/dokken
+  - name: debian-11
+    driver:
+      image: dokken/debian-11
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+        - RUN /usr/bin/apt-get upgrade -y
+  - name: debian-10
+    driver:
+      image: dokken/debian-10
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+        - RUN /usr/bin/apt-get upgrade -y
 
 suites:
   - name: default
