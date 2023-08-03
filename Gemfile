@@ -1,15 +1,10 @@
 source 'https://rubygems.org'
 
-group :development do
-  gem 'chef', '~> 16'
-  gem 'rake'
-end
-
-group :style do
-  gem 'cookstyle'
-end
+gem 'rake'
 
 group :test do
+  gem 'berkshelf' # needed by test-kitchen
+  gem 'cookstyle'
   gem 'kitchen-dokken'
   gem 'kitchen-inspec'
   gem 'test-kitchen'
