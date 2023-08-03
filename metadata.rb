@@ -6,7 +6,8 @@ description      'Installs Tor'
 source_url       'https://github.com/infertux/chef-tor-ng'
 issues_url       'https://github.com/infertux/chef-tor-ng/issues'
 
-version          '1.2.0'
-chef_version     '>= 14'
+version          '2.0.0'
+chef_version     '>= 18'
 
-supports 'debian', '>= 9.5'
+supports 'debian', '>= 11.0'
+supports 'ubuntu', '>= 22.04'

@@ -1,7 +1,7 @@
 # Tor-ng Cookbook
 
 [![Cookbook](https://img.shields.io/cookbook/v/tor-ng.svg)](https://supermarket.getchef.com/cookbooks/tor-ng)
-[![Build Status](https://travis-ci.org/infertux/chef-tor-ng.svg?branch=master)](https://travis-ci.org/infertux/chef-tor-ng)
+[![Build Status](https://github.com/infertux/chef-tor-ng/actions/workflows/test.yml/badge.svg)](https://github.com/infertux/chef-tor-ng/actions)
 
 ## Recipes
 
