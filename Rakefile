@@ -14,6 +14,7 @@ desc 'Run all style checks'
 task 'style:all' => ['style:ruby']
 
 require 'kitchen/rake_tasks'
+require 'thor' # https://github.com/inspec/inspec/pull/5388
 Kitchen::RakeTasks.new
 
 task default: %w(kitchen:all style:all)
