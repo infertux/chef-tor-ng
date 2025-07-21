@@ -41,3 +41,8 @@ suites:
   - name: default
     run_list:
       - recipe[tor-ng::default]
+    attributes:
+      tor-ng:
+        torrc:
+          onion_services:
+            testservice: { port: "80 127.0.0.1:80" }

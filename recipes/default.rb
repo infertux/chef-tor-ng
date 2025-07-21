@@ -18,8 +18,8 @@ end
 
 node['tor-ng']['torrc']['onion_services'].each do |id, service|
   directory "/var/lib/tor/#{id}" do
-    not_if { service['hostname'].nil? }
-    notifies :reload, 'service[tor]'
+    not_if { service['port'].nil? }
+    notifies :restart, 'service[tor]'
     owner node['tor-ng']['user']
     group node['tor-ng']['group']
     mode '02700'
@@ -36,7 +36,7 @@ node['tor-ng']['torrc']['onion_services'].each do |id, service|
 
     file "/var/lib/tor/#{id}/#{filename}" do
       not_if { body.nil? }
-      notifies :reload, 'service[tor]'
+      notifies :restart, 'service[tor]'
       owner node['tor-ng']['user']
       group node['tor-ng']['group']
       mode '0600'
