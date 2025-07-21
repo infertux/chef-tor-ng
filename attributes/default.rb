@@ -1,6 +1,9 @@
-default['tor-ng']['torrc'] = {
+default['tor-ng'] = {
   user: 'debian-tor', # String # FIXME: detect distro
   group: 'debian-tor', # String # FIXME: detect distro
+}
+
+default['tor-ng']['torrc'] = {
   address: nil, # String, nil/false will autodetect
   contact_info: nil, # String, nil/false means none
   dir_port: false, # String|Bool, true means '9030'
