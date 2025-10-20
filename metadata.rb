@@ -9,5 +9,5 @@ issues_url       'https://github.com/infertux/chef-tor-ng/issues'
 version          '2.1.1'
 chef_version     '>= 18'
 
-supports 'debian', '>= 11.0'
+supports 'debian', '>= 12.0'
 supports 'ubuntu', '>= 22.04'

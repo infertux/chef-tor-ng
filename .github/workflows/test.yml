@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+  schedule:
+    - cron: "0 0 * * 0" # run weekly on Sundays
 
 permissions:
   contents: read
@@ -15,24 +15,24 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [ "default-debian-11", "default-debian-12" ]
+        suite: [ "default-debian-13", "default-debian-12" ]
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ruby # latest stable release
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run Test Kitchen suite ${{ matrix.suite }}
-      run: bundle exec rake kitchen:${{ matrix.suite }}
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby # latest stable release
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Run Test Kitchen suite ${{ matrix.suite }}
+        run: bundle exec rake kitchen:${{ matrix.suite }}
   style:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ruby # latest stable release
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run style checks
-      run: bundle exec rake style:ruby
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby # latest stable release
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Run style checks
+        run: bundle exec rake style:ruby
