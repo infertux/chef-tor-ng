@@ -10,4 +10,4 @@ version          '2.1.1'
 chef_version     '>= 18'
 
 supports 'debian', '>= 12.0'
-supports 'ubuntu', '>= 22.04'
+supports 'ubuntu', '>= 24.04'
