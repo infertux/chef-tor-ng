@@ -149,6 +149,13 @@ RelayBandwidthRate <%= @torrc['relay_bandwidth_rate'] %> KBytes
 RelayBandwidthBurst <%= @torrc['relay_bandwidth_burst'] %> KBytes
 <% end %>
 
+## Use this to limit how much bandwidth your relay advertises to the
+## network, without actually throttling it.
+#MaxAdvertisedBandwidth 1 MBytes
+<% if @torrc['max_advertised_bandwidth'] %>
+MaxAdvertisedBandwidth <%= @torrc['max_advertised_bandwidth'] %> KBytes
+<% end %>
+
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies separately to sent and received bytes,
 ## not to their sum: setting "40 GB" may allow up to 80 GB total before
